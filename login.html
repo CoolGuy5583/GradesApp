@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    {% endblock title %}
+
+{% block content %}
+    <section>
+        <div>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset style="text-align: center; width: 50%; height: 300px; font-size: 1.25rem; color: white;
+                font-family: 'Josefin Sans', sans-serif; border: 2px solid white; margin: 0 auto; border-radius: 50px;  background: radial-gradient(#00b0ff, #0070ff)">
+                    <legend>Log in to see your weekly report and other cool features!</legend>
+                    <div style="height: 20px;"></div>
+                    <div class="text-field-container">
+                        {{ form.email.label(class="text-field-label") }}
+                        {% if form.email.errors %}
+                            {{ form.email(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.email.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="text-field-container">
+                        {{ form.password.label(class="text-field-lable") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.password.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="check-box-container">
+                        {{ form.remember.label(class="check-box-label") }}
+                        {{ form.remember(class="check-box", onchange='submitCursor()') }}
+                    </div>
+                    <div style="margin-top: 40px;">
+                        {{ form.submit(style="width: 100px; height: 40px; border: 1px solid white; border-radius: 50px; color: white;", id="submit") }}
+                    </div>
+                    <div style="margin: auto; font-family: Arial, Helvetica, sans-serif;">
+                        <br>
+                        <small style="color: black; font-size: 0.9rem">Don't have an account? <a href="{{ url_for('register') }}" style="color: white; font-family: 'Josefin Sans', sans-serif; font-size: 1rem;">Register now!</a></small>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+{% endblock %}

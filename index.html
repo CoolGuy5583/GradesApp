@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section>
+        <main>
+            <h1 id="moto">
+                Veni Vidi Vici
+            </h1>
+            <h4>I came, I saw, I conqured</h3>
+        </main>
+        <div id="tri"></div>
+    </section>
+    <section id="about" style="padding-top: 50px;">
+        <a id="about"></a>
+        <h1>About</h1>
+    </section>
+{% endblock %}

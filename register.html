@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% endblock title %}
+
+{% block content %}
+    <section style="height: 700px;">
+        <div style="margin-top: auto;">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset style="text-align: center; width: 50%; height: 630px; font-size: 1.25rem; color: white;
+                font-family: 'Josefin Sans', sans-serif; border: 2px solid white; margin: 0 auto; border-radius: 50px; background: radial-gradient(#00b0ff, #0070ff)">
+                    <legend>Register today to guarantee improved grades!</legend>
+                    <div style="height: 25px;"></div>
+                    <div class="text-field-container">
+                        {{ form.first_name.label(class="text-field-lable") }}
+                        {% if form.first_name.errors %}
+                            {{ form.first_name(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.first_name.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.first_name(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="text-field-container">
+                        {{ form.last_name.label(class="text-field-lable") }}
+                        {% if form.last_name.errors %}
+                            {{ form.last_name(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.last_name.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.last_name(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="text-field-container">
+                        {{ form.grade.label(class="text-field-lable") }}
+                        {% if form.grade.errors %}
+                            {{ form.grade(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.grade.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.grade(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="text-field-container">
+                        {{ form.gender.label(class="text-field-lable") }}
+                        {% if form.gender.errors %}
+                            {{ form.gender(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.gender.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.gender(class="radio", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="text-field-container">
+                        {{ form.username.label(class="text-field-lable") }}
+                        {% if form.username.errors %}
+                            {{ form.username(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.username.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.username(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="text-field-container">
+                        {{ form.email.label(class="text-field-lable") }}
+                        {% if form.email.errors %}
+                            {{ form.email(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.email.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="text-field-container">
+                        {{ form.password.label(class="text-field-lable") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.password.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div class="text-field-container">
+                        {{ form.confirm_password.label(class="text-field-lable") }}
+                        {% if form.confirm_password.errors %}
+                            {{ form.confirm_password(class="text-field", onchange="submitCursor()") }}
+                            <div>
+                                {% for error in form.confirm_password.errors %}
+                                    <span class="error">{{ error }}</span>                                
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.confirm_password(class="text-field", onchange="submitCursor()") }}
+                        {% endif %}
+                    </div>
+                    <div style="margin-top: 50px;">
+                        {{ form.submit(style="width: 100px; height: 40px; border: 1px solid white; border-radius: 50px; color: white;", id="submit") }}
+                    </div>
+                    <div style="margin: auto; font-family: Arial, Helvetica, sans-serif; margin-bottom: 0px;">
+                        <br>
+                        <br>
+                        <small style="color: black; font-size: 0.9rem">Already have an account? <a href="{{ url_for('login') }}" style="color: white; font-family: 'Josefin Sans', sans-serif; font-size: 1rem;">Login</a></small>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+    
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+{% endblock content %}

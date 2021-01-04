@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%;">
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css.css') }}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+        {% if title %}
+            <title>{{ title }}</title>
+        {% endif %}
+
+        {% block title %} {% endblock %}
+    </head>
+
+    <body>
+        {% if showNav %}
+            <header id="navbar">
+                    <h3 id="logo" ><a href="{{ url_for('home') }}">Grades To Go</a></h3>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="{{ url_for('home') }}">Calander</a></li>
+                    {% if current_user.is_authenticated %}
+                    </ul>
+                        <p>{{ current_user.username }}</p>
+                        <a id="register" href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    </ul>
+                        <a id="register" href="{{ url_for('register') }}">Sign-Up</a>
+                    {% endif %}
+            </header>
+        {% endif %}
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %} {% endblock %}
+    </body>
+</html>
